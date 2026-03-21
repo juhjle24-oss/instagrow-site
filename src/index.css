@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --color-brand-primary: #5B3FE3;
+  --color-brand-primary-dark: #3B2AB0;
+  --color-brand-cta: #FF6B4A;
+  --color-brand-cta-soft: #FF8A65;
+  --color-brand-teal: #00C9A7;
+  --color-brand-amber: #F5A623;
+  --color-brand-bg: #0F1015;
+  --color-brand-elevated: #181A22;
+  --color-brand-border: #252837;
+  --color-brand-text: #F9FAFF;
+  --color-brand-muted: #B3B7C9;
+  --color-brand-subtle: #8A8FA3;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-brand-bg text-brand-text;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .card-elevated {
+    @apply bg-brand-elevated border border-brand-border rounded-3xl transition-all duration-300;
+  }
+  
+  .card-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .card-glow::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
+    background-image: radial-gradient(circle at 50% 0%, var(--color-brand-primary) 0%, transparent 70%);
+  }
+  
+  .card-glow:hover::after {
+    @apply opacity-10;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-brand-bg border border-brand-border rounded-xl text-brand-text placeholder:text-brand-subtle focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all;
+  }
+
+  .glass-panel {
+    @apply bg-brand-elevated/80 backdrop-blur-xl border border-brand-border rounded-3xl;
+  }
+
+  .bg-mesh {
+    background-image: radial-gradient(at 0% 0%, rgba(91, 63, 227, 0.15) 0, transparent 50%), 
+                      radial-gradient(at 50% 0%, rgba(255, 107, 74, 0.1) 0, transparent 50%),
+                      radial-gradient(at 100% 0%, rgba(0, 201, 167, 0.1) 0, transparent 50%);
+  }
+}
+
+@media print {
+  header, footer, .dashboard-nav, button {
+    display: none !important;
+  }
+  
+  .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  section, .bg-white, .card-elevated {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #eee !important;
+    break-inside: avoid;
+    margin-bottom: 2rem !important;
+  }
+}
