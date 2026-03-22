@@ -61,7 +61,7 @@ export async function analyzeInstagramProfile(handle: string, url: string, bioLi
   `;
 
   const response = await ai.models.generateContent({
-    model: "gemini-pro",
+    model: "gemini-1.0-pro",
     contents: [{ parts: [{ text: prompt }] }],
     config: {
       responseMimeType: "application/json",
